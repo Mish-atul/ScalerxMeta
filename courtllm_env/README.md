@@ -1,6 +1,16 @@
+---
+title: CourtLLM OpenEnv
+emoji: ⚖️
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+pinned: true
+license: mit
+---
+
 # ⚖️ CourtLLM — Hallucination Reduction via Adversarial Courtroom RL
 
-[![HF Space](https://img.shields.io/badge/HF%20Space-Deploy-green)](https://huggingface.co/spaces)
+[![HF Space](https://img.shields.io/badge/HF%20Space-Running-green)](https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv)
 [![OpenEnv](https://img.shields.io/badge/OpenEnv-v0.2.3-blue)](https://github.com/meta-pytorch/OpenEnv)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -10,11 +20,9 @@
 
 | Resource | Link |
 |---|---|
-| 🌐 Live HF Space | `https://huggingface.co/spaces/<username>/courtllm-env` |
+| 🌐 Live HF Space | https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv |
 | 📓 Colab Training Notebook | [courtllm_grpo_colab.ipynb](training/courtllm_grpo_colab.ipynb) |
-| 📝 HF Blog Post | `https://huggingface.co/blog/<username>/courtllm` |
-| 🎥 YouTube Demo (<2 min) | `https://youtube.com/watch?v=...` |
-| 📊 Training Run (W&B) | `https://wandb.ai/...` |
+| 📊 Training Run (W&B) | [View Results](outputs/) |
 
 ---
 
@@ -105,7 +113,7 @@ No single reward signal — multiple independent verifiers prevent gaming:
 ### Install the Environment
 
 ```bash
-pip install git+https://huggingface.co/spaces/<username>/courtllm-env
+pip install git+https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv
 ```
 
 ### Basic Usage
@@ -114,7 +122,7 @@ pip install git+https://huggingface.co/spaces/<username>/courtllm-env
 from courtllm_env import CourtLLMClient, CourtAction
 
 # Connect to deployed Space
-with CourtLLMClient("https://<username>-courtllm-env.hf.space") as env:
+with CourtLLMClient("https://mishatul-courtllm-openenv.hf.space") as env:
     # Reset environment
     obs = env.reset()
     print(f"Query: {obs.plaintiff_query}")
@@ -139,22 +147,17 @@ with CourtLLMClient("https://<username>-courtllm-env.hf.space") as env:
 
 ```bash
 # Clone repository
-git clone https://github.com/<username>/courtllm-env.git
-cd courtllm-env
+git clone https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv
+cd CourtLLM_OpenEnv
 
 # Install dependencies
-pip install -e .
+pip install -r requirements.txt
 
 # Start server
-python -m uvicorn server.app:app --host 0.0.0.0 --port 8000
+python -m uvicorn server.app:app --host 0.0.0.0 --port 7860
 
-# In another terminal, test
-python -c "
-from courtllm_env import CourtLLMClient
-with CourtLLMClient('http://localhost:8000') as env:
-    obs = env.reset()
-    print(f'Case: {obs.plaintiff_query[:80]}...')
-"
+# Test health
+curl http://localhost:7860/health
 ```
 
 ### Re-run Training
@@ -207,7 +210,7 @@ courtllm_env/
 ├── client.py                 # HTTPEnvClient (public API)
 ├── __init__.py
 ├── server/
-│   ├── app.py                # FastAPI server
+│   ├── app.py                # FastAPI server + Web UI
 │   ├── courtllm_environment.py  # Main environment class
 │   ├── judge.py              # Deterministic verifier
 │   ├── jury.py               # 3-agent consensus panel
@@ -230,9 +233,9 @@ courtllm_env/
 ```bibtex
 @misc{courtllm2026,
   title={CourtLLM: Adversarial Courtroom Environment for LLM Hallucination Reduction},
-  author={OpenEnv Hackathon Submission},
+  author={mishatul},
   year={2026},
-  url={https://huggingface.co/spaces/<username>/courtllm-env}
+  url={https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv}
 }
 ```
 
@@ -256,7 +259,6 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 🔗 Links
 
 - [OpenEnv Documentation](https://github.com/meta-pytorch/OpenEnv)
-- [GRPO Paper](https://arxiv.org/abs/...)
 - [Unsloth](https://github.com/unslothai/unsloth)
 - [TRL](https://github.com/huggingface/trl)
 

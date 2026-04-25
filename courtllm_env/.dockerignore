@@ -14,9 +14,5 @@ build/
 *.egg
 .git/
 .gitignore
-*.md
-outputs/
-training/
-demo/
-*.ipynb
 .DS_Store
+# Keep README.md, outputs/, training/ for HF Spaces

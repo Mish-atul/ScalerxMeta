@@ -9,6 +9,13 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
+# Copy requirements first for better caching
+COPY requirements.txt ./
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
 # Copy project files
 COPY pyproject.toml ./
 COPY openenv.yaml ./
@@ -17,23 +24,12 @@ COPY client.py ./
 COPY __init__.py ./
 COPY server/ ./server/
 COPY data/ ./data/
+COPY outputs/ ./outputs/
+COPY training/ ./training/
+COPY README.md ./
 
-# Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir \
-    openenv-core>=0.2.3 \
-    fastapi>=0.104.0 \
-    uvicorn>=0.24.0 \
-    pydantic>=2.0.0 \
-    sentence-transformers>=2.2.0 \
-    wikipedia-api>=0.6.0 \
-    transformers>=4.35.0 \
-    torch>=2.0.0 \
-    numpy>=1.24.0 \
-    httpx>=0.25.0
+# HuggingFace Spaces requires port 7860
+EXPOSE 7860
 
-# Expose port
-EXPOSE 8000
-
-# Run FastAPI server
-CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run FastAPI server on port 7860 (HF Spaces requirement)
+CMD ["uvicorn", "server.app:app", "--host", "0.0.0.0", "--port", "7860"]
