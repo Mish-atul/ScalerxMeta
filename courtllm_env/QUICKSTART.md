@@ -5,9 +5,9 @@ Get up and running with CourtLLM in 5 minutes.
 ## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/<username>/courtllm-env.git
-cd courtllm-env
+# Clone from HuggingFace Space
+git clone https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv
+cd CourtLLM_OpenEnv
 
 # Install dependencies
 pip install -r requirements.txt
@@ -27,17 +27,19 @@ This will show you:
 ## Start the Server
 
 ```bash
-python -m uvicorn server.app:app --reload
+python -m uvicorn server.app:app --host 0.0.0.0 --port 7860 --reload
 ```
 
-Visit http://localhost:8000/docs for interactive API documentation.
+Visit http://localhost:7860 for the interactive Web UI.
+Visit http://localhost:7860/docs for API documentation.
 
 ## Use the Client
 
 ```python
 from courtllm_env import CourtLLMClient, CourtAction
 
-with CourtLLMClient("http://localhost:8000") as env:
+# Connect to live HF Space
+with CourtLLMClient("https://mishatul-courtllm-openenv.hf.space") as env:
     obs = env.reset()
     print(f"Query: {obs.plaintiff_query}")
     
@@ -65,5 +67,5 @@ Open `training/courtllm_grpo_colab.ipynb` in Google Colab and run all cells.
 
 ## Need Help?
 
-- Check the [Issues](https://github.com/<username>/courtllm-env/issues)
+- Check the [HF Space](https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv)
 - Read the [OpenEnv docs](https://github.com/meta-pytorch/OpenEnv)

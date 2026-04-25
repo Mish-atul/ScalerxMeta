@@ -10,7 +10,7 @@ class CourtLLMClient:
 
     Usage:
         # Remote Space
-        client = CourtLLMClient("https://<username>-courtllm-env.hf.space")
+        client = CourtLLMClient("https://mishatul-courtllm-openenv.hf.space")
         obs = client.reset()
         result = client.step(CourtAction(...))
         client.close()

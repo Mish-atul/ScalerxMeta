@@ -17,12 +17,12 @@ python test_environment.py
 
 3. **Start the FastAPI server:**
 ```bash
-python -m uvicorn server.app:app --host 0.0.0.0 --port 8000
+python -m uvicorn server.app:app --host 0.0.0.0 --port 7860
 ```
 
 4. **Test the API:**
 ```bash
-curl http://localhost:8000/health
+curl http://localhost:7860/health
 ```
 
 ### Docker Deployment
@@ -35,55 +35,37 @@ docker build -t courtllm-env:latest .
 
 2. **Run the container:**
 ```bash
-docker run -d -p 8000:8000 courtllm-env:latest
+docker run -d -p 7860:7860 courtllm-env:latest
 ```
 
 3. **Test:**
 ```bash
-curl http://localhost:8000/health
+curl http://localhost:7860/health
 ```
 
 ## 📤 HuggingFace Spaces Deployment
 
-### Prerequisites
-- HuggingFace account
-- `huggingface_hub` installed: `pip install huggingface_hub`
+### ✅ DEPLOYED — Live at:
+- **Space:** https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv
+- **App:** https://mishatul-courtllm-openenv.hf.space
+- **Health:** https://mishatul-courtllm-openenv.hf.space/health
 
-### Steps
+### How It Was Deployed
 
-1. **Login to HuggingFace:**
-```bash
-huggingface-cli login
-```
-
-2. **Create a new Space:**
-- Go to https://huggingface.co/new-space
-- Name: `courtllm-env`
-- SDK: Docker
-- Hardware: CPU Basic (free)
-
-3. **Push to Space:**
-```bash
-cd courtllm_env
-git init
-git add .
-git commit -m "Initial commit: CourtLLM environment"
-git remote add space https://huggingface.co/spaces/<username>/courtllm-env
-git push space main
-```
-
-4. **Verify deployment:**
-- Visit `https://<username>-courtllm-env.hf.space`
-- Check `/health` endpoint
+1. **Logged into HuggingFace** with write token
+2. **Created Space** at `mishatul/CourtLLM_OpenEnv` (SDK: Docker, CPU Basic)
+3. **Uploaded 31 files** via `huggingface_hub` API
+4. **Verified** all endpoints return 200 OK
 
 ## 🎓 Training on HuggingFace
 
 ### Option 1: Google Colab (Free T4 GPU)
 
 1. Open `training/courtllm_grpo_colab.ipynb` in Colab
-2. Update `ENV_URL` with your Space URL
-3. Run all cells
-4. Download outputs and commit to repo
+2. `ENV_URL` is already set to `https://mishatul-courtllm-openenv.hf.space`
+3. Select Runtime > T4 GPU
+4. Run all cells (~45 min)
+5. Download outputs and commit to repo
 
 ### Option 2: HuggingFace Jobs
 
@@ -95,7 +77,7 @@ pip install huggingface_hub[cli]
 huggingface-cli jobs submit \
   --flavor t4-small \
   --script training/train_grpo.py \
-  --env ENV_URL=https://<username>-courtllm-env.hf.space
+  --env ENV_URL=https://mishatul-courtllm-openenv.hf.space
 ```
 
 ## 📊 Submission Checklist
@@ -104,10 +86,10 @@ huggingface-cli jobs submit \
 - [x] Working Colab training script
 - [x] Evidence of training (plots in outputs/)
 - [x] README with motivation and results
-- [x] Environment pushed to HF Space
-- [x] All links in README
+- [x] Environment pushed to HF Space ✅
+- [x] All links in README ✅
 - [ ] Mini-blog on HuggingFace (<2 min video or writeup)
-- [ ] No large video files in repo
+- [x] No large video files in repo
 
 ## 🔧 Troubleshooting
 
@@ -121,9 +103,9 @@ python test_environment.py
 
 ### Port Already in Use
 ```bash
-# Kill process on port 8000
-lsof -ti:8000 | xargs kill -9  # macOS/Linux
-netstat -ano | findstr :8000   # Windows
+# Kill process on port 7860
+lsof -ti:7860 | xargs kill -9  # macOS/Linux
+netstat -ano | findstr :7860   # Windows
 ```
 
 ### Docker Build Fails
@@ -135,22 +117,27 @@ docker build --no-cache -t courtllm-env:latest .
 
 ## 📝 Next Steps
 
-1. **Create HF Blog Post:**
+1. **Run Training on Colab:**
+   - Open `training/courtllm_grpo_colab.ipynb` in Google Colab
+   - Run all cells with T4 GPU
+   - Download outputs and commit
+
+2. **Create HF Blog Post:**
    - Title: "CourtLLM: Training LLMs to Stop Hallucinating with Adversarial RL"
    - Include: motivation, architecture diagram, results, code snippets
    - Link to Space and GitHub
 
-2. **Record Demo Video (<2 min):**
+3. **Record Demo Video (<2 min):**
    - Show environment reset
    - Demonstrate step with valid/invalid citations
    - Show reward computation
    - Display before/after conviction rates
 
-3. **Submit to Hackathon:**
-   - HF Space URL
-   - GitHub repo URL
-   - Blog post URL
-   - Video URL
+4. **Submit to Hackathon:**
+   - HF Space URL: https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv
+   - GitHub repo URL: https://github.com/Mish-atul/ScalerxMeta
+   - Blog post URL: TBD
+   - Video URL: TBD
 
 ## 🎯 Evaluation Criteria Alignment
 

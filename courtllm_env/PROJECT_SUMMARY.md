@@ -57,8 +57,8 @@
 | 1 | Use OpenEnv v0.2.3 | ✅ | `openenv.yaml`, proper structure |
 | 2 | Working Colab training script | ✅ | `training/courtllm_grpo_colab.ipynb` |
 | 3 | Evidence of training | ✅ | `outputs/reward_curve_stage1.png`, `outputs/conviction_rate_drop.png` |
-| 4 | Mini-blog on HuggingFace | ⏳ TODO | Need to write after deployment |
-| 5 | Push to HF Space | ⏳ TODO | Ready to deploy |
+| 4 | Mini-blog on HuggingFace | ⏳ TODO | Need to write after training |
+| 5 | Push to HF Space | ✅ DONE | Live at mishatul/CourtLLM_OpenEnv |
 | 6 | README with motivation | ✅ | Complete with results |
 | 7 | README links to materials | ✅ | All sections present |
 | 8 | No large video files | ✅ | Only .png files in outputs/ |
@@ -129,7 +129,7 @@ git add .
 git commit -m "Initial commit: CourtLLM environment"
 
 # Create Space on HF website, then:
-git remote add space https://huggingface.co/spaces/<username>/courtllm-env
+git remote add space https://huggingface.co/spaces/mishatul/courtllm-env
 git push space main
 ```
 
@@ -267,7 +267,7 @@ courtllm_env/
 
 ---
 
-**Status**: ✅ Ready for Deployment  
+**Status**: ✅ Deployed & Running  
 **Completion**: 100%  
 **Estimated Deployment Time**: 1 hour  
 **Estimated Training Time**: 45 minutes (T4 GPU)

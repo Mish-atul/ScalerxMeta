@@ -2,7 +2,7 @@
 type: space
 runtime: fastapi
 app: server.app:app
-port: 8000
+port: 7860
 name: courtllm-env
 version: 1.0.0
 description: >
