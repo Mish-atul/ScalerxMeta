@@ -1,0 +1,17 @@
+# openenv.yaml — REQUIRED for submission validation
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+name: courtllm-env
+version: 1.0.0
+description: >
+  A multi-agent courtroom environment for LLM hallucination reduction.
+  Trains an LLM (Defendant) to generate factually grounded, citation-backed
+  responses that survive cross-examination by a Judge + Jury panel.
+tags:
+  - hallucination
+  - multi-agent
+  - scalable-oversight
+  - rlvr
+  - grpo

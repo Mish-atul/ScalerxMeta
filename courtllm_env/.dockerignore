@@ -1,0 +1,22 @@
+# .dockerignore
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+*.egg
+.git/
+.gitignore
+*.md
+outputs/
+training/
+demo/
+*.ipynb
+.DS_Store
