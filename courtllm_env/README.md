@@ -21,6 +21,7 @@ license: mit
 | Resource | Link |
 |---|---|
 | 🌐 **Live HF Space** | [https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv](https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv) |
+| 📝 **Blog Post** | [BLOG.md](BLOG.md) |
 | 🖥️ **Training Script (A100)** | [train_grpo_a100.py](training/train_grpo_a100.py) |
 | 📓 **Colab Notebook** | [courtllm_grpo_colab.ipynb](training/courtllm_grpo_colab.ipynb) |
 | 📊 **Training Plots & Results** | [outputs/](outputs/) |
