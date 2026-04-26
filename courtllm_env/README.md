@@ -21,9 +21,9 @@ license: mit
 | Resource | Link |
 |---|---|
 | 🌐 **Live HF Space** | [https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv](https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv) |
-| 📓 **Training Notebook** | [courtllm_grpo_colab.ipynb](training/courtllm_grpo_colab.ipynb) |
-| 🖥️ **A100 Training Script** | [train_grpo_a100.py](training/train_grpo_a100.py) |
-| 📊 **Training Plots** | [outputs/](outputs/) |
+| 🖥️ **Training Script (A100)** | [train_grpo_a100.py](training/train_grpo_a100.py) |
+| 📓 **Colab Notebook** | [courtllm_grpo_colab.ipynb](training/courtllm_grpo_colab.ipynb) |
+| 📊 **Training Plots & Results** | [outputs/](outputs/) |
 
 ---
 
@@ -89,10 +89,11 @@ No single reward signal — multiple independent verifiers prevent gaming:
 | **Quantization** | 4-bit (NF4 via bitsandbytes) |
 | **Fine-tuning** | LoRA (r=16, α=32) |
 | **RL Algorithm** | GRPO (via TRL GRPOTrainer) |
-| **Hardware** | NVIDIA A100-PCIE-40GB |
+| **Hardware** | NVIDIA A100-PCIE-40GB (College GPU Lab) |
 | **Training Steps** | 300 steps (~6 hours) |
 | **Batch Size** | 2 × 4 gradient accumulation |
 | **Trainable Params** | 29.9M / 3.1B (0.96%) |
+| **Framework** | transformers 5.x + TRL + PEFT + bitsandbytes |
 
 ### Reward Curve (GRPO Training)
 
@@ -192,12 +193,13 @@ curl http://localhost:7860/health
 
 ### Re-run Training
 
-**Option 1: Google Colab** — Open `training/courtllm_grpo_colab.ipynb` in Colab (T4 GPU, free tier).
-
-**Option 2: A100 Server** — Run `training/train_grpo_a100.py` on any NVIDIA A100 GPU:
+**Option 1: GPU Server (Recommended)** — Run `training/train_grpo_a100.py` on any NVIDIA A100/H100 GPU:
 ```bash
-CUDA_VISIBLE_DEVICES=0 python3 train_grpo_a100.py
+CUDA_VISIBLE_DEVICES=0 python3 training/train_grpo_a100.py
 ```
+This is the script we used to train on our college GPU lab's A100-40GB. It handles all dependency installation, model loading, GRPO training, evaluation, and plot generation automatically.
+
+**Option 2: Google Colab** — Open `training/courtllm_grpo_colab.ipynb` in Colab (T4 GPU, free tier). Uses a smaller model variant for Colab's memory constraints.
 
 ---
 
