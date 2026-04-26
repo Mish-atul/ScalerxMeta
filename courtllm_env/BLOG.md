@@ -184,6 +184,7 @@ with CourtLLMClient("https://mishatul-courtllm-openenv.hf.space") as env:
 ## Links
 
 - 🌐 **Live HF Space:** [mishatul/CourtLLM_OpenEnv](https://huggingface.co/spaces/mishatul/CourtLLM_OpenEnv)
+- 💻 **GitHub Repository:** [Mish-atul/ScalerxMeta](https://github.com/Mish-atul/ScalerxMeta)
 - 📓 **Training Notebook:** [courtllm_grpo_colab.ipynb](training/courtllm_grpo_colab.ipynb)
 - 🖥️ **A100 Training Script:** [train_grpo_a100.py](training/train_grpo_a100.py)
 - 📊 **Training Plots:** [outputs/](outputs/)
