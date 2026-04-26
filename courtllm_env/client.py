@@ -2,7 +2,10 @@
 
 import httpx
 from typing import Optional
-from .models import CourtAction, CourtObservation, CourtState
+try:
+    from .models import CourtAction, CourtObservation, CourtState
+except ImportError:
+    from models import CourtAction, CourtObservation, CourtState
 
 class CourtLLMClient:
     """

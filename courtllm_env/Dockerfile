@@ -22,6 +22,7 @@ COPY openenv.yaml ./
 COPY models.py ./
 COPY client.py ./
 COPY __init__.py ./
+COPY inference.py ./
 COPY server/ ./server/
 COPY data/ ./data/
 COPY outputs/ ./outputs/
