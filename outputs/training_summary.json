@@ -1,0 +1,10 @@
+{
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "training_steps_completed": 300,
+  "checkpoint_used": "checkpoint-200",
+  "baseline_conviction_rate": 0.61,
+  "trained_conviction_rate": 0.0,
+  "improvement": "61.0%",
+  "final_reward": 0.5201,
+  "max_reward": 0.5479
+}
