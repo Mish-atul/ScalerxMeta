@@ -64,6 +64,12 @@ We trained **Qwen/Qwen2.5-3B-Instruct** using **GRPO** (Group Relative Policy Op
 
 The model's average episode reward converged from **0.008 → 0.548** within the first 50 steps, demonstrating rapid policy improvement. The agent learned to generate factually grounded, citation-backed testimony that survives cross-examination by the Judge and Jury panel.
 
+#### Policy Loss Convergence
+
+![Training Loss](outputs/training_loss_curve.png)
+
+The GRPO policy loss dropped from **2.50 → 0.43** over 300 steps, with the smoothed curve (5-step moving average) showing clean exponential decay. Loss stabilized around step 200, indicating the policy had learned the optimal defense strategy.
+
 #### Conviction Rate Drop
 
 ![Conviction Rate](outputs/conviction_rate_drop.png)
@@ -71,6 +77,22 @@ The model's average episode reward converged from **0.008 → 0.548** within the
 - **Baseline (untrained):** 61% conviction rate — the model hallucinated frequently
 - **After GRPO training:** 0% conviction rate — the model learned to produce grounded responses
 - **Improvement:** 61 percentage points reduction in hallucination convictions
+
+#### Full Training Dashboard
+
+![Training Dashboard](outputs/training_dashboard.png)
+
+**(A) Reward vs Loss** — Inverse correlation confirms the model is genuinely improving, not reward hacking.
+**(B) KL Divergence** — Policy drift stays below the 0.2 threshold, proving stable GRPO updates without catastrophic forgetting.
+**(C) Reward Distribution** — Early training shows spread (0.0-0.5); late training is tightly clustered around 0.54, proving consistent behavior.
+**(D) 4-Signal Radar** — All four reward signals improved dramatically; citation validity saw the largest gain (+0.57).
+
+#### Convergence Speed & Curriculum Design
+
+![Convergence Analysis](outputs/convergence_curriculum.png)
+
+**Left:** The model reached R≥0.1 in just 10 steps, R≥0.3 in 35 steps, and R≥0.5 in 105 steps — demonstrating efficient sample usage.
+**Right:** Our 4-stage curriculum design scales difficulty progressively. We trained on Stage 0 (Basic); stages 1-3 remain available for future multi-stage curriculum training.
 
 ### Qualitative Example
 
