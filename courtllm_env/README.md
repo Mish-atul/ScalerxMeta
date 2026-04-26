@@ -110,6 +110,24 @@ No single reward signal — multiple independent verifiers prevent gaming:
 *GRPO-trained conviction rate: **0.0%** — the model learned to produce grounded responses.*
 *Improvement: **61 percentage points** reduction in hallucination convictions.*
 
+### Policy Loss Curve
+
+![Training Loss](outputs/training_loss_curve.png)
+
+*GRPO policy loss converged from **2.50 → 0.43** over 300 steps. Smoothed MA-5 curve shows clean exponential decay, stabilizing around step 200.*
+
+### Full Training Dashboard
+
+![Training Dashboard](outputs/training_dashboard.png)
+
+**(A)** Reward vs Loss — inverse correlation confirms genuine improvement. **(B)** KL divergence stays below 0.2 threshold — stable policy updates. **(C)** Reward distribution tightens from spread (0.0-0.5) to clustered (~0.54). **(D)** All 4 reward signals improved; citation validity gained +0.57.
+
+### Convergence Speed & Curriculum Design
+
+![Convergence Analysis](outputs/convergence_curriculum.png)
+
+*Model reached R≥0.1 in 10 steps, R≥0.5 in 105 steps. 4-stage curriculum scales difficulty for future multi-stage training.*
+
 ### Qualitative Example
 
 **Query:** "What caused the 2008 financial crisis?"
